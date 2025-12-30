@@ -23,10 +23,10 @@ class Assets:
     def get_a_value(self):
         return self.__a_value
 
-    # Assets depriciation
+    # Assets deprecation
 
-    def assets_depriciation(self, year):
-        """ Calculate assets depriciation according to years by 10%"""
+    def assets_deprecation(self, year):
+        """ Calculate assets deprecation according to years by 10%"""
         return self.get_a_value * (100 / year)
 
     def get_details(self,):
@@ -35,10 +35,37 @@ class Assets:
     def __str__(self):
         return self.get_details()
 
-
-
 """
-
 Subclass => hardware =+ condition
 Subclass => software =+ expiry date
 """
+
+
+class Hardware(Assets):
+    """Hardware asset - INHERITANCE"""
+
+    def __init__(self, asset_id:str, name:str, value:float, condition:str = "Good"):
+        super().__init__(asset_id, name, "Hardware", value)
+        self.__condition = condition
+
+    @property
+    def condition(self):
+        return self.__condition
+
+    def get_details(self):
+        return f"{super().get_details()} | Condition: {self.__condition}"
+
+
+class Software(Assets):
+    """Software asset - INHERITANCE"""
+
+    def __init__(self, asset_id:str, name:str, value:float, expiry_date:str):
+        super().__init__(asset_id, name, "Software", value)
+        self.__expiry_date = expiry_date
+
+    @property
+    def expiry_date(self):
+        return self.__expiry_date
+
+    def get_details(self):
+        return f"{super().get_details()} | Expires: {self.__expiry_date}"
