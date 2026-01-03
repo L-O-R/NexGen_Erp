@@ -7,7 +7,7 @@ from Emplyoees import Manager, Employee
 def read_data_from_employees(filename:str = "employees.txt"):
     employee_dict = {}
     if not os.path.exists(filename):
-        print("Employee list does not exist. Starting from scratch.")
+        print("Employee file does not exist. Starting from scratch.")
         return employee_dict
     with open(filename, "r") as file:
        for line in file:
