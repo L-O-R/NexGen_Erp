@@ -1,3 +1,8 @@
+from asset_menu import asset_management_menu
+from employee_management import employee_management_menu
+from input_validation import get_menu_choice
+
+
 def display_main_menu(user):
     """
     Display the main menu
@@ -17,18 +22,7 @@ def display_main_menu(user):
     print()
     print('=' * 50)
 
-def get_menu_choice():
-    """
-    Get user choice with input validatio
-    :return:  choice
-    """
-    while True:
-        choice = input("Enter your choice(1-4): ").strip()
-        # if choice >= '1' and choice <= '4':
-        if 1 <= int(choice) <= 4:
-            return int(choice)
-        else:
-            print("❌ Invalid Choice! Please enter a number between 1 and 4.")
+
 
 def main_menu_loop(user, employees, assets):
     """
@@ -53,19 +47,15 @@ def main_menu_loop(user, employees, assets):
         display_main_menu(user)
 
         # get user choice
-        choice = get_menu_choice()
+        choice = get_menu_choice("(1-4)", ('1', '2', '3', '4'))
         print()
         match choice:
             case 1:
                 print("Loading Employees Management.... ")
-                print("THis will be implemented in phase 4")
-                print()
-                input("Please enter to return to Main Menu")
+                employee_management_menu(employees)
             case 2:
                 print("Loading Assets Management.... ")
-                print("THis will be implemented in phase 5")
-                print()
-                input("Please enter to return to Main Menu")
+                asset_management_menu(assets, employees)
 
             case 3:
                 print("Loading Company Financial.... ")

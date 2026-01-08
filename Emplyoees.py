@@ -43,7 +43,7 @@ class Employee:
         self.__emp_salary = emp_salary
 
     def assign_assets(self, assets):
-        self.__assigned_assets = assets
+        self.__assigned_assets = self.__assigned_assets.append(assets)
 
 
     def get_details(self):
