@@ -34,6 +34,10 @@ class Assets:
 
     def __str__(self):
         return self.get_details()
+    def __add__(self, other):
+        if isinstance(other, Assets):
+            return self.__a_value + other.__a_value
+        return self.__a_value
 
 """
 Subclass => hardware =+ condition

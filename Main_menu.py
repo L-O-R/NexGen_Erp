@@ -1,6 +1,42 @@
+from Assets import Hardware
+from Emplyoees import Manager
 from asset_menu import asset_management_menu
+from company_financial import financial_report_menu
 from employee_management import employee_management_menu
 from input_validation import get_menu_choice
+
+
+def save_employee_data(employees: dict, filename="employee.txt"):
+    with open(filename, "w") as file:
+        for employee in employees.values():
+            if isinstance(employee, Manager):
+                line = f"{employee.emp_id}|{employee.emp_name}|{employee.emp_role}|{employee.emp_salary}|{employee.bonus}\n"
+            else:
+                line = f"{employee.emp_id}|{employee.emp_name}|{employee.emp_role}|{employee.emp_salary}\n"
+            file.write(line)
+    return len(employees)
+
+
+def save_asset_data(assets: dict, filename="asset.txt"):
+    with open(filename, "w") as file:
+        for asset in assets.values():
+            if isinstance(asset, Hardware):
+                line = f"{asset.get_a_id}|{asset.get_a_name}|{asset.get_a_category}|{asset.get_a_value}|{asset.condition}"
+            else:
+                line = f"{asset.get_a_id}|{asset.get_a_name}|{asset.get_a_category}|{asset.get_a_value}|{asset.expiry_date}"
+        file.write(line)
+    return len(assets)
+
+
+def save_all_data(employees: dict, assets: dict):
+    asset_count = save_asset_data(assets, filename="asset.txt")
+    emp_count = save_employee_data(employees, filename="employee.txt")
+
+    print("=" * 50)
+    print("Data Saved Successfully")
+    print(f"Employee Count: {emp_count}")
+    print(f"Asset Count: {asset_count}")
+    print("=" * 50)
 
 
 def display_main_menu(user):
@@ -59,8 +95,7 @@ def main_menu_loop(user, employees, assets):
 
             case 3:
                 print("Loading Company Financial.... ")
-                print("THis will be implemented in phase 6")
-                print()
+                financial_report_menu(employees, assets)
                 input("Please enter to return to Main Menu")
             case 4:
                 print("=" * 50)
@@ -71,6 +106,7 @@ def main_menu_loop(user, employees, assets):
                 if confirm == "y" or confirm == "Y":
                     print()
                     print("Saving the data....")
+                    save_all_data(employees, assets)
                     print("✅ System shutdown initiated  ")
                     running = False
                 else:
@@ -78,4 +114,6 @@ def main_menu_loop(user, employees, assets):
                     print("✅ Cancelled . Returning to Main Menu")
 
     return True
+
+
 

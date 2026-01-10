@@ -1,0 +1,2 @@
+ES001|asd|manager|123123.0|2131.0
+ES2|asda|staff|21123.0

@@ -46,6 +46,8 @@ class Employee:
         self.__assigned_assets = self.__assigned_assets.append(assets)
 
 
+
+
     def get_details(self):
         """
             prints the details of the employee
@@ -70,3 +72,6 @@ class Manager(Employee):
     def get_details(self):
         base_details = super().get_details()
         return f"{base_details} | Bonus: {self.bonus}"
+
+    def total_pay(self):
+        return self.emp_salary + self.bonus
