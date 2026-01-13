@@ -1,3 +1,4 @@
+import json
 from Assets import Hardware
 from Emplyoees import Manager
 from asset_menu import asset_management_menu
@@ -9,10 +10,18 @@ from input_validation import get_menu_choice
 def save_employee_data(employees: dict, filename="employee.txt"):
     with open(filename, "w") as file:
         for employee in employees.values():
-            if isinstance(employee, Manager):
-                line = f"{employee.emp_id}|{employee.emp_name}|{employee.emp_role}|{employee.emp_salary}|{employee.bonus}\n"
+            if employee.assigned_assets:
+                asset_string = [asset for asset in employee.assigned_assets]
+                if isinstance(employee, Manager):
+                    line = f"{employee.emp_id}|{employee.emp_name}|{employee.emp_role}|{employee.emp_salary}|{employee.bonus}|{asset_string}\n"
+                else:
+                    line = f"{employee.emp_id}|{employee.emp_name}|{employee.emp_role}|{employee.emp_salary}|{asset_string}\n"
             else:
-                line = f"{employee.emp_id}|{employee.emp_name}|{employee.emp_role}|{employee.emp_salary}\n"
+                if isinstance(employee, Manager):
+                    line = f"{employee.emp_id}|{employee.emp_name}|{employee.emp_role}|{employee.emp_salary}|{employee.bonus}|No assigned Assets\n"
+                else:
+                    line = f"{employee.emp_id}|{employee.emp_name}|{employee.emp_role}|{employee.emp_salary}|No assigned Assets\n"
+
             file.write(line)
     return len(employees)
 
@@ -21,10 +30,10 @@ def save_asset_data(assets: dict, filename="asset.txt"):
     with open(filename, "w") as file:
         for asset in assets.values():
             if isinstance(asset, Hardware):
-                line = f"{asset.get_a_id}|{asset.get_a_name}|{asset.get_a_category}|{asset.get_a_value}|{asset.condition}"
+                line = f"{asset.get_a_id}|{asset.get_a_name}|{asset.get_a_category}|{asset.get_a_value}|{asset.condition}\n"
             else:
-                line = f"{asset.get_a_id}|{asset.get_a_name}|{asset.get_a_category}|{asset.get_a_value}|{asset.expiry_date}"
-        file.write(line)
+                line = f"{asset.get_a_id}|{asset.get_a_name}|{asset.get_a_category}|{asset.get_a_value}|{asset.expiry_date}\n"
+            file.write(line)
     return len(assets)
 
 

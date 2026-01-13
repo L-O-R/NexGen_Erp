@@ -18,11 +18,17 @@ def read_data_from_employees(filename:str = "employees.txt"):
                employee_name = parts[1]
                employee_role = parts[2]
                salary = float(parts[3])
-               if employee_role == "Manager":
+               if employee_role == "manager":
                    emp_bonus = float(parts[4])
-                   employee_dict[employee_id] = Manager(employee_id, employee_name, employee_role, salary, emp_bonus)
+                   assigned_assets = parts[5]
+                   employee = Manager(employee_id, employee_name, employee_role, salary, emp_bonus)
+                   employee.assigned_assets.append(assigned_assets)
+                   employee_dict[employee_id] = employee
                else:
-                   employee_dict[employee_id] = Employee(employee_id, employee_name, employee_role, salary)
+                   assigned_assets = parts[4]
+                   employee = Employee(employee_id, employee_name, employee_role, salary)
+                   employee.assigned_assets.append(assigned_assets)
+                   employee_dict[employee_id] = employee
 
     return employee_dict
 

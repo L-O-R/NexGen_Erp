@@ -11,6 +11,7 @@ def get_menu_choice(max_choice:str,a:tuple = ("1", "2", "3", "4") ):
         else:
             print(f"❌ Invalid Choice! Please enter a number between {max_choice}.")
 
+
 def validate_name(text:str):
     while True:
         name = input(text).strip()
@@ -20,6 +21,8 @@ def validate_name(text:str):
             print("Please enter a valid employee name, It cannot contain digits")
         else:
             return name
+
+
 def validate_role(text:str):
     while True:
         role = input(text).strip()
@@ -29,10 +32,15 @@ def validate_role(text:str):
             print("Please enter a valid employee name, It cannot contain digits")
         else:
             return role.lower()
+
+
 def validate_number(text:str, min_val = 0):
     while True:
-        number = float(input(text).strip())
-        if number >= min_val:
-            return number
-        else:
-            print(f"Please enter a valid number at least {min_val}")
+        try:
+            number = float(input(text).strip())
+            if number >= min_val:
+                return number
+            else:
+                print(f"Please enter a valid number at least {min_val}")
+        except ValueError:
+            print(f"Please enter a valid number(not a Alphabets)  at least {min_val}")

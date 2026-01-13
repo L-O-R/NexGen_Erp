@@ -26,8 +26,18 @@ class Assets:
     # Assets deprecation
 
     def assets_deprecation(self, year):
-        """ Calculate assets deprecation according to years by 10%"""
-        return self.get_a_value * (100 / year)
+        """
+            Calculate assets deprecation according to years by 10%
+            Formula for Depreciation:
+             Current Value = Original Value * (1 - deprecated_rate) ** years
+
+        """
+        if year == 0 or year < 1:
+            return self.__a_value
+        depreciation_rate = 0.10
+        current_value = self.__a_value * ((1 - depreciation_rate) ** year)
+        return current_value
+
 
     def get_details(self,):
         return f"Id: {self.get_a_id} | Name: {self.get_a_name} | Category: {self.get_a_category} | Value: {self.get_a_value}"

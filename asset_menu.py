@@ -109,7 +109,7 @@ def assign_asset(assets:dict, employee_dict:dict):
     asset = assets[assets_id]
     employee = employee_dict[employee_id]
 
-    employee.assign_assets(asset)
+    employee.assign_assets(asset.get_a_name)
     print()
     print(f"Asset {assets_id} successfully assigned to Employee {employee_id}")
     print()

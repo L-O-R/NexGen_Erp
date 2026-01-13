@@ -65,9 +65,9 @@ def startup_phase():
     print("=" * 50)
     print()
     # data load
-    employees_dict = read_data_from_employees('employees.txt')
-    assets_dict = read_data_from_assets('assets.txt')
-    return employees_dict, assets_dict
+    employees_dicts = read_data_from_employees('employee.txt')
+    assets_dicts = read_data_from_assets('asset.txt')
+    return employees_dicts, assets_dicts
 
 # =========================================================
 # Phase 2.2
@@ -129,11 +129,11 @@ if __name__ == "__main__":
     if user is None:
         print()
         print("Exiting system")
-
-    exit_req = main_menu_loop(user, employees_dict, assets_dict)
-    if exit_req:
-        print()
-        print("=" * 50)
-        print("Thank you for using NexGen ERP")
-        print("=" * 50)
-        print()
+    else:
+        exit_req = main_menu_loop(user, employees_dict, assets_dict)
+        if exit_req:
+            print()
+            print("=" * 50)
+            print("Thank you for using NexGen ERP")
+            print("=" * 50)
+            print()

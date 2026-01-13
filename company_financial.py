@@ -128,7 +128,7 @@ def generate_full_financial_report(employees:dict, assets:dict):
         if isinstance(employee, Manager):
             total_salary += employee.total_pay()
         else:
-            total_salary += employee.emp_salary()
+            total_salary += employee.emp_salary
     for asset in assets.values():
         total_assets_value += asset.get_a_value
 
